@@ -4,10 +4,50 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+
+    <title>Blueprint Design System</title>
+
+    <script type="module" src="/src/blueprintds.ts"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <style>
+    #app {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    </style>
+    <div id="app">
+      <bp-button>Button</bp-button>
+      <input type="checkbox" checked />
+      <input type="checkbox" />
+      <bp-checkbox id="checkbox0"></bp-checkbox>
+      <bp-checkbox id="checkbox1" label="Agree to terms and conditions"></bp-checkbox>
+      <bp-checkbox id="checkbox2">
+        <template slot="icon-template">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-check"
+            style="padding: 2px;"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="#2c9e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <path d="M5 12l5 5l10 -10" />
+          </svg>
+        </template>
+        <span slot="label" style="font-weight: bold;">What is this checkbox?</span>
+      </bp-checkbox>
+    </div>
+    <script type="module">
+    const checkbox = document.querySelector('#checkbox1');
+    checkbox.addEventListener('bpChange', (e) => {
+      console.log(e);
+    });
+    </script>
   </body>
 </html>

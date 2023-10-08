@@ -1,0 +1,61 @@
+import { css } from 'lit';
+
+export const checkboxStyles = css`
+:host {
+  display: inline-block;
+  --size: 25px;
+  --background-color: white;
+  --border-color: hsl(0 0% 0% / 20%);
+  --border-radius: 4px;
+}
+:host button#checkbox {
+  all: unset;
+  background-color: var(--background-color);
+  width: var(--size);
+  height: var(--size);
+  min-width: var(--size);
+  min-height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--border-color) 0px 2px 10px;
+  border-radius: var(--border-radius);
+}
+
+:host button#checkbox:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
+:host input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  transform: translateX(-100%);
+  margin: 0;
+  width: var(--size);
+  min-width: var(--size);
+  height: var(--size);
+  min-height: var(--size);
+}
+
+:host button .icon-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+:host .bp-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+:host .bp-checkbox label {
+  padding-inline-start: 10px;
+}
+
+:host .bp-checkbox svg#checkmark {
+  cursor: pointer;
+  pointer-events: none;
+  padding: 8px;
+}
+`;
+
