@@ -5,6 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+
     <title>Blueprint Design System</title>
 
     <script type="module" src="/src/blueprintds.ts"></script>
@@ -17,6 +20,7 @@
       gap: 8px;
     }
     </style>
+
     <div id="app">
       <bp-button>Button</bp-button>
       <input type="checkbox" checked />
@@ -42,6 +46,9 @@
         </template>
         <span slot="label" style="font-weight: bold;">What is this checkbox?</span>
       </bp-checkbox>
+      <bp-copy-button text="Awesome value was copied">
+        <sl-icon name="copy"></sl-icon>
+      </bp-copy-button>
     </div>
     <script type="module">
     const checkbox = document.querySelector('#checkbox1');
