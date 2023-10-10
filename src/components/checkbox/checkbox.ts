@@ -15,17 +15,13 @@ export class BpCheckbox extends LitElement {
 
   constructor() {
     super();
-    this.label = '';
-    this.checked = true;
-    this.disabled = false;
-    this.iconElement = undefined;
   }
 
   @property({ type: String }) label: string = '';
   
   @property({ type: Boolean }) checked: boolean = true;
 
-  @hostClass('bp-checkbox--disabled') 
+  // @hostClass('bp-checkbox--disabled') 
   @property({ type: Boolean }) disabled: boolean = false;
 
   @query('slot[name="icon-template"]') iconSlot: HTMLSlotElement | undefined;

@@ -59,11 +59,11 @@ export const checkboxStyles = css`
   padding: 8px;
 }
 
-:host(.bp-checkbox--disabled) {
+:host([disabled]) {
   opacity: 0.5;
   cursor: not-allowed;
 }
-:host(.bp-checkbox--disabled) button#checkbox {
+:host([disabled]) button#checkbox {
   cursor: not-allowed;
 }
 `;
