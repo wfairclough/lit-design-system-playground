@@ -25,6 +25,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@open-wc/lit-helpers": "^0.6.0",
     "lit": "pre"
   }
 }

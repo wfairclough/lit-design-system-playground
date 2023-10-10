@@ -10,6 +10,7 @@ export const checkboxStyles = css`
 }
 :host button#checkbox {
   all: unset;
+  cursor: pointer;
   background-color: var(--background-color);
   width: var(--size);
   height: var(--size);
@@ -56,6 +57,14 @@ export const checkboxStyles = css`
   cursor: pointer;
   pointer-events: none;
   padding: 8px;
+}
+
+:host(.bp-checkbox--disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+:host(.bp-checkbox--disabled) button#checkbox {
+  cursor: not-allowed;
 }
 `;
 
