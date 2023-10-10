@@ -1,8 +1,8 @@
 
 import { LitElement, html, css } from 'lit';
 import { customElement, property, query, queryAssignedElements, state } from 'lit/decorators.js';
-import { BpTabsTrigger } from './tabs-trigger';
-import { BpTabsContent } from './tabs-content';
+import { BpTab } from './tab';
+import { BpTabPanel } from './tab-panel';
 
 @customElement('bp-tabs')
 export class BpTabs extends LitElement {
@@ -18,69 +18,81 @@ export class BpTabs extends LitElement {
     `,
   ];
 
-  @property({ type: String }) defaultTab: string | undefined = undefined;
-
-  @state({}) activeTab: string | undefined = undefined;
+  @state({}) activeTab: BpTab | undefined = undefined;
 
   @query('slot') defaultSlot!: HTMLSlotElement;
   @query('slot[name="nav"]') navSlot!: HTMLSlotElement;
 
-  @queryAssignedElements({ slot: 'nav', selector: 'bp-tabs-trigger', flatten: true }) tabTriggers:
-    | NodeListOf<BpTabsTrigger>
+  @queryAssignedElements({ slot: 'nav', selector: 'bp-tab', flatten: true }) tabs:
+    | NodeListOf<BpTab>
     | undefined;
-  @queryAssignedElements({ selector: 'bp-tabs-content', flatten: true }) tabContents:
-    | NodeListOf<BpTabsContent>
+  @queryAssignedElements({ selector: 'bp-tab-panel', flatten: true }) panels:
+    | NodeListOf<BpTabPanel>
     | undefined;
 
   connectedCallback() {
     super.connectedCallback();
 
-    console.log({ triggers: this.tabTriggers, contents: this.tabContents });
+    console.log({ triggers: this.tabs, contents: this.panels });
   }
 
   navSlotUpdated() {
     const slot = this.navSlot;
-    console.log('navSlotUpdated', { slot, t: this.tabTriggers, c: this.tabContents });
+    console.log('navSlotUpdated', { slot, t: this.tabs, c: this.panels });
     const handleTabClick = (e: Event) => {
-      const target = e.target as BpTabsTrigger;
-      if (target instanceof BpTabsTrigger && target.tab) {
-        if (this.activeTab !== target.tab) {
-          this.selectTab(target.tab, { emit: true });
+      const target = e.target as BpTab;
+      if (target instanceof BpTab) {
+        if (this.activeTab !== target) {
+          this.selectTab(target, { emit: true });
         }
       }
     };
-    this.tabTriggers?.forEach(trigger => {
-      trigger.addEventListener('click', handleTabClick);
+    this.tabs?.forEach(tab => {
+      tab.addEventListener('click', handleTabClick);
+      if (tab.active) {
+        this.activeTab = tab;
+      }
     });
+    if (!this.activeTab) {
+      this.activeTab = this.tabs?.[0];
+      if (this.activeTab) {
+        this.activeTab.active = true;
+      }
+    }
   }
 
   defaultSlotUpdated() {
     const slot = this.defaultSlot;
-    console.log('defaultSlotUpdated', { slot, t: this.tabTriggers, c: this.tabContents });
-
-    this.selectTab(this.defaultTab ?? '');
+    console.log('defaultSlotUpdated', { slot, t: this.tabs, c: this.panels });
+    for (const tab of this.tabs ?? []) {
+      if (tab.active) {
+        this.selectTab(tab);
+        return;
+      }
+    }
   }
 
-  private selectTab(tab: string, { emit = false } = {}) {
+  private selectTab(tab: BpTab, { emit = false } = {}) {
     let previousTab: string | undefined = undefined;
-    for (const content of this.tabContents ?? []) {
-      if (content.hidden === false) {
-        previousTab = content.tab;
+    for (const panel of this.panels ?? []) {
+      if (panel.hidden === false) {
+        previousTab = panel.tab;
       }
-      if (content.tab === tab) {
-        content.hidden = false;
+      if (panel.tab === tab.name) {
+        panel.hidden = false;
       } else {
-        content.hidden = true;
+        panel.hidden = true;
       }
     }
     this.activeTab = tab;
+    this.activeTab.active = true;
     if (emit) {
       this.dispatchEvent(new CustomEvent('bpChange', { detail: { currentTab: tab, previousTab } }));
     }
   }
 
   render() {
-    return html`<div part="container" class="bp-tabs-container">
+    return html`<div part="base" class="bp-tabs-container">
       <nav part="nav">
         <slot name="nav" @slotchange=${this.navSlotUpdated}></slot>
       </nav>

@@ -6,5 +6,5 @@ export * from './components/button/button';
 export * from './components/copy-button/copy-button';
 export * from './components/checkbox/checkbox';
 export * from './components/tabs/tabs';
-export * from './components/tabs/tabs-content';
-export * from './components/tabs/tabs-trigger';
+export * from './components/tabs/tab-panel';
+export * from './components/tabs/tab';

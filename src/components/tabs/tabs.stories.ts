@@ -9,13 +9,13 @@ const meta = {
   render: args => {
   console.log(args)
     return html`<bp-tabs @bpChange=${args.bpChange} defaultTab="tab1">
-      <bp-tabs-trigger slot="nav" tab="tab1">Tab 1</bp-tabs-trigger>
-      <bp-tabs-trigger slot="nav" tab="tab2">Tab 2</bp-tabs-trigger>
-      <bp-tabs-trigger slot="nav" tab="tab3">Tab 3</bp-tabs-trigger>
+      <bp-tab slot="nav" name="tab1">Tab 1</bp-tab>
+      <bp-tab slot="nav" name="tab2">Tab 2</bp-tab>
+      <bp-tab slot="nav" name="tab3">Tab 3</bp-tab>
 
-      <bp-tabs-content tab="tab1">Tab 1 content</bp-tabs-content>
-      <bp-tabs-content tab="tab2">Tab 2 content</bp-tabs-content>
-      <bp-tabs-content tab="tab3">Tab 3 content</bp-tabs-content>
+      <bp-tab-panel tab="tab1">Tab 1 content</bp-tab-panel>
+      <bp-tab-panel tab="tab2">Tab 2 content</bp-tab-panel>
+      <bp-tab-panel tab="tab3">Tab 3 content</bp-tab-panel>
     </bp-tabs>`;
   },
   argTypes: {

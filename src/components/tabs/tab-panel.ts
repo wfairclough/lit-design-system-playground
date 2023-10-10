@@ -2,8 +2,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-@customElement('bp-tabs-content')
-export class BpTabsContent extends LitElement {
+@customElement('bp-tab-panel')
+export class BpTabPanel extends LitElement {
   static styles = [
     css`
       :host {
@@ -13,7 +13,7 @@ export class BpTabsContent extends LitElement {
   @property({ type: String }) tab: string | undefined = undefined;
 
   render() {
-    return html`<div class="bp-tabs-content">
+    return html`<div class="bp-tab-panel" role="tabpanel">
       <slot></slot>
     </div>`;
   }
@@ -21,7 +21,7 @@ export class BpTabsContent extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'bp-tabs-content': BpTabsContent;
+    'bp-tab-panel': BpTabPanel;
   }
 }
 
