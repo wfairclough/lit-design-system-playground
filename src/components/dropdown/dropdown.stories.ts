@@ -9,10 +9,13 @@ const meta = {
     args = {
       ...args,
     }
-    return html`<bp-dropdown></bp-dropdown>`;
+    return html`<bp-dropdown>
+     <div class="dropdown-conent">
+        <p>Content</p>
+      </div> 
+    </bp-dropdown>`;
   },
   argTypes: {
-    variant: { control: { type: 'select' }, options: ['primary', 'secondary', 'tertiary'] }, 
   },
 } satisfies Meta<any>;
 
@@ -22,7 +25,6 @@ type Story = StoryObj<any>;
 // More on writing stories with args: https://storybook.js.org/docs/web-components/writing-stories/args
 export const Primary: Story = {
   args: {
-    variant: 'primary',
   },
 };
 

@@ -1,0 +1,10 @@
+
+:host button {
+  all: unset;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: border-box;
+}

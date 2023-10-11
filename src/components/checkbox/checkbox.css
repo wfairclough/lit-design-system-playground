@@ -1,6 +1,3 @@
-import { css } from 'lit';
-
-export const checkboxStyles = css`
 :host {
   display: inline-block;
   --size: 25px;
@@ -66,5 +63,4 @@ export const checkboxStyles = css`
 :host([disabled]) button#checkbox {
   cursor: not-allowed;
 }
-`;
 

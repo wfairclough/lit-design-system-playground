@@ -1,0 +1,81 @@
+@import './button-reset.css';
+
+:host {
+  display: inline-flex;
+
+  --background-color: var(--bp-color-base);
+  --color: var(--bp-color-contrast);
+  color: color-mix(in lch, purple 50%, plum 50%);
+}
+
+:host(.bp-variant__solid) {
+  --background-color: var(--bp-color-base);
+  --background-color-activated: var(--bp-color-shade);
+  --background-color-focused: var(--bp-color-shade);
+  --background-color-hover: var(--bp-color-tint);
+  --color: var(--bp-color-contrast);
+  --color-hover: var(--color);
+  --border-type: solid;
+  --border-color: transparent;
+}
+
+:host(.bp-variant__outline) {
+  --background-color: transparent;
+  --background-color-activated: var(--bp-color-shade);
+  --background-color-focused: var(--bp-color-shade);
+  --background-color-hover: var(--bp-color-tint);
+  --color: var(--bp-color-base);
+  --color-hover: var(--bp-color-base);
+  --border-type: solid;
+  --border-color: var(--bp-color-base);
+}
+
+:host(.bp-variant__clear) {
+  --background-color: transparent;
+  --background-color-activated: var(--bp-color-shade);
+  --background-color-focused: var(--bp-color-shade);
+  --background-color-hover: transparent;
+  --color: var(--bp-color-base);
+  --color-hover: var(--bp-color-tint);
+  --border-type: solid;
+  --border-color: transparent;
+}
+
+:host button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  border: 1px var(--border-type) var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--color);
+  font-weight: 400;
+
+  &:active {
+    background-color: var(--background-color-activated);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--background-color-focused);
+  }
+  &:hover {
+    background-color: var(--background-color-hover);
+    color: var(--color-hover);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  & [part="main"] {
+    display: inline-block;
+  }
+
+  & slot[name="start"]::slotted(*) {
+
+  }
+}
+

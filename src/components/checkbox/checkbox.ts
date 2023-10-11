@@ -2,14 +2,14 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { classMap } from 'lit/directives/class-map.js';
+import checkboxStyles from './checkbox.css?inline';
 
 import { checkmarkSvg } from './checkmark.svg.js';
-import { checkboxStyles } from './checkbox.styles.js';
 
 @customElement('bp-checkbox')
 export class BpCheckbox extends LitElement {
   static styles = [
-    checkboxStyles,
+    checkboxStyles as any,
   ];
 
   constructor() {
