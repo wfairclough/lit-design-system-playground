@@ -1,6 +1,6 @@
 
 import { LitElement, html, css } from 'lit';
-import { customElement, property, query, queryAssignedElements, state } from 'lit/decorators.js';
+import { customElement, query, queryAssignedElements, state } from 'lit/decorators.js';
 import { BpTab } from './tab';
 import { BpTabPanel } from './tab-panel';
 
@@ -15,6 +15,16 @@ export class BpTabs extends LitElement {
         display: flex;
         flex-direction: column;
       }
+
+      :host [role="tablist"] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      :host [role="tabpanel"] {
+        display: flex;
+        min-width: 100%;
+      } 
     `,
   ];
 
@@ -72,6 +82,26 @@ export class BpTabs extends LitElement {
     }
   }
 
+  focusPriviousTab({ current }: { current?: BpTab } = {}) {
+    const currentFocusTab = current ?? this.activeTab;
+    const previousTab = currentFocusTab?.previousElementSibling; 
+    if (previousTab instanceof BpTab) {
+      previousTab.focus();
+    } else if (this.tabs?.length) {
+      this.tabs![this.tabs!.length - 1].focus();
+    }
+  }
+
+  focusNextTab({ current }: { current?: BpTab } = {}) {
+    const currentFocusTab = current ?? this.activeTab;
+    const nextTab = currentFocusTab?.nextElementSibling; 
+    if (nextTab instanceof BpTab) {
+      nextTab.focus();
+    } else if (this.tabs?.length) {
+      this.tabs![0].focus();
+    }
+  }
+
   private selectTab(tab: BpTab, { emit = false } = {}) {
     let previousTab: string | undefined = undefined;
     for (const panel of this.panels ?? []) {
@@ -84,6 +114,9 @@ export class BpTabs extends LitElement {
         panel.hidden = true;
       }
     }
+    this.tabs?.forEach(tab => {
+      tab.active = false;
+    });
     this.activeTab = tab;
     this.activeTab.active = true;
     if (emit) {
@@ -93,12 +126,12 @@ export class BpTabs extends LitElement {
 
   render() {
     return html`<div part="base" class="bp-tabs-container">
-      <nav part="nav">
+      <nav part="nav" role="tablist">
         <slot name="nav" @slotchange=${this.navSlotUpdated}></slot>
       </nav>
-      <section part="content-panel">
+      <div part="tabpanel" role="tabpanel">
         <slot @slotchange=${this.defaultSlotUpdated}></slot>
-      </section>
+      </div>
     </div>`;
   }
 }

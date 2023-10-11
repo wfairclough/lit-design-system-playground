@@ -5,7 +5,6 @@ import { classMap } from 'lit/directives/class-map.js';
 
 import { checkmarkSvg } from './checkmark.svg.js';
 import { checkboxStyles } from './checkbox.styles.js';
-import { hostClass } from '../../internal/host-class.js';
 
 @customElement('bp-checkbox')
 export class BpCheckbox extends LitElement {

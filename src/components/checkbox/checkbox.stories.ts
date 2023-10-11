@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';

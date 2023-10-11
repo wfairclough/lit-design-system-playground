@@ -3,15 +3,70 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87); */
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Colors */
+	--bp-color-primary: #008282;
+	--bp-color-primary-rgb: 0, 130, 130;
+	--bp-color-primary-hsl: 180.00deg 100% 25%;
+	--bp-color-primary-contrast: #ffffff;
+	--bp-color-primary-contrast-rgb: 255,255,255;
+	--bp-color-primary-shade: #004141;
+	--bp-color-primary-tint: #80c1c1;
+
+	--bp-color-primary-dark: #116363;
+	--bp-color-primary-dark-rgb: 17, 99, 99;
+	--bp-color-primary-dark-hsl: 180.00deg 71% 23%;
+	--bp-color-primary-dark-contrast: #ffffff;
+	--bp-color-primary-dark-contrast-rgb: 255,255,255;
+	--bp-color-primary-dark-shade: #093232;
+	--bp-color-primary-dark-tint: #88b1b1;
+
+	--bp-color-primary-light: #F2F8F8;
+	--bp-color-primary-light-rgb: 242, 248, 248;
+	--bp-color-primary-light-hsl: 180.00deg 30% 96%;
+	--bp-color-primary-light-contrast: #008282;
+	--bp-color-primary-light-contrast-rgb: 0,130,130;
+	--bp-color-primary-light-shade: #797c7c;
+	--bp-color-primary-light-tint: #f9fcfc;
+}
+
+.bp-color-primary {
+	--bp-color-base: var(--bp-color-primary);
+	--bp-color-base-rgb: var(--bp-color-primary-rgb);
+	--bp-color-base-hsl: var(--bp-color-primary-hsl);
+	--bp-color-contrast: var(--bp-color-primary-contrast);
+	--bp-color-contrast-rgb: var(--bp-color-primary-contrast-rgb);
+	--bp-color-shade: var(--bp-color-primary-shade);
+	--bp-color-tint: var(--bp-color-primary-tint);
+}
+
+.bp-color-primary-dark {
+	--bp-color-base: var(--bp-color-primary-dark);
+	--bp-color-base-rgb: var(--bp-color-primary-dark-rgb);
+	--bp-color-base-hsl: var(--bp-color-primary-dark-hsl);
+	--bp-color-contrast: var(--bp-color-primary-dark-contrast);
+	--bp-color-contrast-rgb: var(--bp-color-primary-dark-contrast-rgb);
+	--bp-color-shade: var(--bp-color-primary-dark-shade);
+	--bp-color-tint: var(--bp-color-primary-dark-tint);
+}
+
+.bp-color-primary-light {
+	--bp-color-base: var(--bp-color-primary-light);
+	--bp-color-base-rgb: var(--bp-color-primary-light-rgb);
+	--bp-color-base-hsl: var(--bp-color-primary-light-hsl);
+	--bp-color-contrast: var(--bp-color-primary-light-contrast);
+	--bp-color-contrast-rgb: var(--bp-color-primary-light-contrast-rgb);
+	--bp-color-shade: var(--bp-color-primary-light-shade);
+	--bp-color-tint: var(--bp-color-primary-light-tint);
 }
 
 a {
@@ -31,11 +86,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -43,36 +93,3 @@ h1 {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}

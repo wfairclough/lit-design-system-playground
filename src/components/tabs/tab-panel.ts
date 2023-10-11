@@ -13,7 +13,7 @@ export class BpTabPanel extends LitElement {
   @property({ type: String }) tab: string | undefined = undefined;
 
   render() {
-    return html`<div class="bp-tab-panel" role="tabpanel">
+    return html`<div class="bp-tab-panel" role="tabpanel" tabindex="0">
       <slot></slot>
     </div>`;
   }
