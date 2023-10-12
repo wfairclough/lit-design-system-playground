@@ -28,6 +28,10 @@ export class BpDropdown extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
     this.updateComplete.then(() => {
+      if (!this.content.popover) {
+        this.classList.add('polyfilled');
+        return;
+      }
       this.content.addEventListener('toggle', (e: Event) => {
         console.log('toggle', e);
         if (e instanceof ToggleEvent) {
