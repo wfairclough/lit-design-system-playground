@@ -9,7 +9,11 @@ import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace
 
 console.log('Preview', { doc: document});
 
-const headEl = document.querySelector('head');
+const shoelaceLightThemeLink = document.createElement('link');
+shoelaceLightThemeLink.rel = 'stylesheet';
+shoelaceLightThemeLink.href = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css';
+document.head.appendChild(shoelaceLightThemeLink);
+
 const shoelaceScripts = `
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
 <style>
@@ -19,13 +23,12 @@ const shoelaceScripts = `
   }
 </style>
 `;
-headEl?.insertAdjacentHTML('beforeend', shoelaceScripts);
+document.head.insertAdjacentHTML('beforeend', shoelaceScripts);
 
-const bodyEl = document.querySelector('body');
-const shoelaceAutoloader = `
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
-`;
-bodyEl?.insertAdjacentHTML('beforeend', shoelaceAutoloader);
+const shoelaceAutoloaderScript = document.createElement('script');
+shoelaceAutoloaderScript.type = 'module';
+shoelaceAutoloaderScript.src = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js';
+document.head.appendChild(shoelaceAutoloaderScript);
 
 const preview: Preview = {
   parameters: {

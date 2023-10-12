@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { BpCopyButton } from './copy-button.js';
