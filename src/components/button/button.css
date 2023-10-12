@@ -1,6 +1,7 @@
 @import './button-reset.css';
 
 :host {
+  transition: transform 1s;
   display: inline-flex;
 
   --background-color: var(--bp-color-base);

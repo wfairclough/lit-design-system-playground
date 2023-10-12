@@ -4,6 +4,9 @@ import '../src/style.css';
 
 import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace.js';
 
+// Uncomment the following line to use the popover polyfill
+// import 'https://unpkg.com/@oddbird/popover-polyfill@0.2.3/dist/popover.min.js';
+
 console.log('Preview', { doc: document});
 
 const headEl = document.querySelector('head');

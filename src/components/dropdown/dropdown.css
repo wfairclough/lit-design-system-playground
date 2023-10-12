@@ -1,0 +1,131 @@
+:host {
+  display: inline-block;
+
+  & .bp-dropdown {
+    position: relative;
+  }
+
+  /* :host [part='content']::slotted(*) {
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 100;
+opacity: 0;
+transition: opacity 0.2s ease-in-out;
+}
+
+:host([open]) [part='content']::slotted(*) {
+opacity: 1;
+} */
+
+}
+
+:host(.bp-dropdown__align-start) {
+  @supports (anchor-name: --the-anchor) {
+    & [popover] {
+      top: anchor(--dropdown-anchor top);
+      right: anchor(--dropdown-anchor left);
+    }
+  }
+}
+
+:host(.bp-dropdown__align-end) {
+  @supports (anchor-name: --the-anchor) {
+    & [popover] {
+      top: anchor(--dropdown-anchor top);
+      left: anchor(--dropdown-anchor right);
+    }
+  }
+}
+
+:host(.bp-dropdown__align-top) {
+  @supports (anchor-name: --the-anchor) {
+    & [popover] {
+      bottom: anchor(--dropdown-anchor top);
+      left: anchor(--dropdown-anchor left);
+    }
+  }
+}
+
+:host(.bp-dropdown__align-bottom) {
+  @supports (anchor-name: --the-anchor) {
+    & [popover] {
+      top: anchor(--dropdown-anchor bottom);
+      left: anchor(--dropdown-anchor left);
+    }
+  }
+}
+
+@supports not (anchor-name: --the-anchor) {
+  @import url('../../../public/scripts/popover.css');
+}
+
+@supports (anchor-name: --the-anchor) {
+  :host #trigger {
+    anchor-name: --dropdown-anchor;
+  }
+
+  :host [popover] {
+    inset: unset;
+    /* translate: -50%;  */
+  }
+}
+
+
+
+
+
+/* Popover Polyfill */
+[popover] {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  padding: 0.25em;
+  width: fit-content;
+  height: fit-content;
+  border-width: initial;
+  border-color: initial;
+  border-image: initial;
+  border-style: solid;
+  background-color: canvas;
+  color: canvastext;
+  overflow: auto;
+  margin: auto;
+}
+[popover]:not(.\:popover-open) {
+  display: none;
+}
+[popover]:is(dialog[open]) {
+  display: revert;
+}
+[anchor].\:popover-open {
+  inset: auto;
+}
+@supports selector([popover]:popover-open) {
+  [popover]:not(.\:popover-open, dialog[open]) {
+    display: revert;
+  }
+  [anchor]:is(:popover-open) {
+    inset: auto;
+  }
+}
+@supports not (background-color: canvas) {
+  [popover] {
+    background-color: white;
+    color: black;
+  }
+}
+@supports (width: -moz-fit-content) {
+  [popover] {
+    width: -moz-fit-content;
+    height: -moz-fit-content;
+  }
+}
+@supports not (inset: 0) {
+  [popover] {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
