@@ -3,6 +3,7 @@ import { LitElement, html, CSSResult } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { watch } from '../../internal/watch.js';
+
 import dropdownStyles from './dropdown.css?inline';
 
 import '../button/button.js';

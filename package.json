@@ -14,6 +14,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@lit/context": "^1.0.0",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
     "@storybook/blocks": "^7.4.6",
@@ -33,5 +34,9 @@
   "dependencies": {
     "@open-wc/lit-helpers": "^0.6.0",
     "lit": "^3.0.0"
+  },
+  "volta": {
+    "node": "18.18.0",
+    "pnpm": "8.9.0"
   }
 }

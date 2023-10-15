@@ -1,5 +1,6 @@
 import { LitElement, html, CSSResult, PropertyValueMap } from 'lit';
-import { customElement, query, queryAssignedElements } from 'lit/decorators.js';
+import { customElement, property, query, queryAssignedElements } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 
 import modalStyles from './modal.css?inline';
 
@@ -8,6 +9,8 @@ export type FormEventListener = (this: HTMLFormElement, ev: SubmitEvent) => any;
 @customElement('bp-modal')
 export class BpModal extends LitElement {
   static styles = modalStyles as unknown as CSSResult;
+
+  @property({ attribute: 'open' }) isOpen = false;
 
   @query('dialog[part="native"]') nativeDialog!: HTMLDialogElement;
 
@@ -43,6 +46,13 @@ export class BpModal extends LitElement {
       f.addEventListener('submit', handleSubmit);
       this.formListeners.set(f, handleSubmit);
     });
+
+    this.nativeDialog.addEventListener('click', (event) => {
+      console.log({ event });
+      if ((event?.target as unknown as any)?.id !== 'interceptor') {
+          this.close();
+      }
+  });
   }
 
   disconnectedCallback(): void {
@@ -69,19 +79,25 @@ export class BpModal extends LitElement {
 
   render() {
     return html`
-      <dialog part="native">
+      <dialog part="native" class=${classMap({
+        'bp-modal': true,
+        'bp-modal--open': this.nativeDialog?.open,
+        })}>
+        <div id="interceptor"></div>
         <slot part="main"></slot>
       </dialog>
     `;
   }
   
   private _onModalClose(e: Event) {
+    this.isOpen = false;
     this.dispatchEvent(new CustomEvent('bpClose', {
       detail: { nativeEvent: e, state: 'close', returnValue: this.#returnValue },
     }));
   }
 
   private _onModalOpen() {
+    this.isOpen = true;
     this.#returnValue = undefined;
     this.dispatchEvent(new CustomEvent('bpOpen', {
       detail: { nativeDialogElement: this.nativeDialog, state: 'open' },

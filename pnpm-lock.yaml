@@ -13,6 +13,9 @@ dependencies:
     version: 3.0.0
 
 devDependencies:
+  '@lit/context':
+    specifier: ^1.0.0
+    version: 1.0.0
   '@storybook/addon-essentials':
     specifier: ^7.4.6
     version: 7.4.6(react-dom@18.2.0)(react@18.2.0)
@@ -2082,6 +2085,13 @@ packages:
 
   /@lit-labs/ssr-dom-shim@1.1.2-pre.1:
     resolution: {integrity: sha512-cRy/vafxn20Upocct6LeVzMatmnR0qHvX+7U00jPK0t9sxNaiAmpZyjHSUhLtUnG4jpuJW9UBIhVgYfZcgMo8A==}
+
+  /@lit/context@1.0.0:
+    resolution: {integrity: sha512-bdqj6z6Mj+TpYfo2seHy1mlBzYrW+CyHnDQLD0DI7iQLELs2Fk6icZwvbvbskR0E94QG4aO/35j6PTJ9wWTv0Q==}
+    dependencies:
+      '@lit/reactive-element': 2.0.0
+      lit: 3.0.0
+    dev: true
 
   /@lit/reactive-element@2.0.0:
     resolution: {integrity: sha512-wn+2+uDcs62ROBmVAwssO4x5xue/uKD3MGGZOXL2sMxReTRIT0JXKyMXeu7gh0aJ4IJNEIG/3aOnUaQvM7BMzQ==}
