@@ -1,6 +1,12 @@
-import { LitElement, html, css, svg } from 'lit';
+import { LitElement, CSSResult, html, svg } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { spread } from '@open-wc/lit-helpers';
+
+import menuButtonStyles from './menu-button.css?inline';
+
+export type MenuButtonEventDetail = {
+  state: 'open' | 'close';
+};
 
 export type SVGRectProps = {
   x: string;
@@ -43,68 +49,22 @@ export type SVGLineProps = {
 @customElement('bp-menu-button')
 export class BpMenuButton extends LitElement {
 
-  static styles = css`
-:host button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  line-height: 0;
-}
-
-:host {
-  --size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--size); 
-  height: var(--size);
-}
-
-:host svg {
-  width: 100%;
-  height: 100%;
-}
-
-.a,.b,.c {
-  transition: all 0.2s ease-in-out;
-}
-
-:host([open]) .icon .a {
-  rotate: 0.125turn;
-  translate: 30px 5px;
-}
-
-:host([open]) .icon .b {
-  scale: 0;
-  transform-origin: center;
-}
-
-:host([open]) .icon .c {
-  rotate: -0.125turn;
-  translate: -42px 32px;
-}
-`;
+  static styles = menuButtonStyles as unknown as CSSResult;
 
   @property({ type: Boolean, attribute: 'open', reflect: true }) isOpen = false;
 
   public toggle() {
     this.isOpen = !this.isOpen;
+    this.dispatchEvent(new CustomEvent('bpToggle', { detail: { state: this.isOpen ? 'open' : 'close' } }));
   }
 
   public render() {
     return html`
-<button @click=${this.toggle}>
+<button @click=${this.toggle} aria-label="Toggle Menu Button">
   <svg class="icon" viewBox="0 0 100 100" width="40" height="40">
-    ${this.line({ 'class': 'a', y1: '20' })}
-    ${this.line({ 'class': 'b', y1: '50' })}
-    ${this.line({ 'class': 'c', y1: '80' })}
+    ${this.line({ 'class': 'top-line', y1: '20' })}
+    ${this.line({ 'class': 'mid-line', y1: '50' })}
+    ${this.line({ 'class': 'bot-line', y1: '80' })}
   </svg>
 </button>
 `;
@@ -115,7 +75,6 @@ export class BpMenuButton extends LitElement {
       y2: props.y1,
       x1: '15',
       x2: '85',
-      stroke: 'black',
       'stroke-width': '10',
       'stroke-linecap': 'round',
       ...props,

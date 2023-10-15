@@ -1,9 +1,8 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { classMap } from 'lit/directives/class-map.js';
-
-import './menu-button';
+import '../menu-button/menu-button';
+import { MenuButtonEventDetail } from '../menu-button/menu-button';
 
 @customElement('bp-navbar')
 export class BpNavbar extends LitElement {
@@ -12,12 +11,20 @@ export class BpNavbar extends LitElement {
     return html`
 <nav part="navbar" class="bp-navbar">
 
-  <bp-menu-button></bp-menu-button>
+  <bp-menu-button @bpToggle=${this.#menuToggle}></bp-menu-button>
 
   <slot></slot>
 
 </nav>
 `;
+  }
+
+  #menuToggle(e: CustomEvent<MenuButtonEventDetail>) {
+    if (e.detail.state === 'open') {
+      this.setAttribute('expanded', '');
+    } else {
+      this.removeAttribute('expanded');
+    }
   }
 
 }
