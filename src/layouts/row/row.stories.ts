@@ -4,18 +4,31 @@ import { html } from 'lit';
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
-  title: 'Blueprint/List',
+  title: 'Blueprint/Layouts/Row',
   tags: ['autodocs'],
   render: (args) => {
     return html`
-      <bp-list>
-        <bp-list-item>Item 1</bp-list-item>
-        <bp-list-item>Item 2</bp-list-item>
-        <bp-list-item>Item 3</bp-list-item>
-      </bp-list>
+      <bp-row gap=${args.gap}>
+        <span>Item 1</span>
+        <span>Item 2</span>
+        <span>Item 3</span>
+      </bp-row>
+      <style>
+        bp-row span {
+          display: inline-block;
+          padding: 0.5rem;
+          margin: 0;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid black;
+          background: rebeccapurple;
+          color: white;
+        }
+      </style>
     `;
   },
   argTypes: {
+    gap: { control: { type: 'text' } },
   },
   parameters: {
   },
@@ -27,6 +40,7 @@ type Story = StoryObj<any>;
 // More on writing stories with args: https://storybook.js.org/docs/web-components/writing-stories/args
 export const Default: Story = {
   args: {
+    gap: '20px',
   },
 };
 

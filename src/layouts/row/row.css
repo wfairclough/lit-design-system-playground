@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-sizing: border-box;
+  gap: var(--gap, 0);
+}
+

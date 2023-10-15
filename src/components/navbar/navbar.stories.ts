@@ -4,15 +4,12 @@ import { html } from 'lit';
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
-  title: 'Blueprint/List',
+  title: 'Blueprint/Navbar',
   tags: ['autodocs'],
   render: (args) => {
     return html`
-      <bp-list>
-        <bp-list-item>Item 1</bp-list-item>
-        <bp-list-item>Item 2</bp-list-item>
-        <bp-list-item>Item 3</bp-list-item>
-      </bp-list>
+      <bp-navbar>
+      </bp-navbar>
     `;
   },
   argTypes: {
@@ -29,5 +26,6 @@ export const Default: Story = {
   args: {
   },
 };
+
 
 
