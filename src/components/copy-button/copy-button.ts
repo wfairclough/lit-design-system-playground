@@ -1,13 +1,11 @@
+import { Variant } from './../button/button';
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+import '../button/button';
+
 @customElement('bp-copy-button')
 export class BpCopyButton extends LitElement {
-  static styles = [
-    css`
-      :host {
-      }`
-  ];
 
   @property({ type: String }) text = 'Copy';
 
@@ -15,12 +13,14 @@ export class BpCopyButton extends LitElement {
     navigator.clipboard.writeText(this.text);
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
-    return html`<button @click=${this.handleClick.bind(this)}>
-      <slot>
-        <sl-icon name="copy"></sl-icon>
-      </slot>
-    </button>`;
+    return html`<bp-button variant="solid" color="primary" @click=${this.handleClick.bind(this)}>
+      <sl-icon slot="icon-only" name="copy"></sl-icon>
+    </bp-button>`;
   }
 }
 

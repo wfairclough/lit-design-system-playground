@@ -6,9 +6,8 @@ import inputStyles from "./input.css?inline";
 
 @customElement('bp-input')
 export class BpInput extends LitElement {
-
   static styles = inputStyles as unknown as CSSResult;
-  
+
   @property({ type: String, attribute: 'value' }) value: string | undefined = undefined;
 
   @property({ type: String, attribute: 'placeholder' }) placeholder: string | undefined = undefined;
@@ -28,29 +27,31 @@ export class BpInput extends LitElement {
   @property({ type: Boolean, attribute: 'autocomplete' }) autocomplete = false;
 
   render() {
-    const label = this.label ? html`<label part="label" class="bp-input__label">${this.label}</label>` : nothing;
+    const label = this.label
+      ? html`<label part="label" for="native" class="bp-input__label">${this.label}</label>`
+      : nothing;
     return html`
-      <div part="wrapper" class="bp-input">
+      <div class="bp-input__container">
         ${label}
-        <input
-          part="input"
-          class=${classMap({
-            'bp-input__input': true,
-          })}
-          type="${this.type}"
-          placeholder="${this.placeholder}"
-          value="${this.value}"
-          ?disabled="${this.disabled}"
-          ?required="${this.required}"
-          ?readonly="${this.readonly}"
-          ?autofocus="${this.autofocus}"
-          ?autocomplete="${this.autocomplete}"
-        />
-        <slot part="buttons-slot" name="buttons"></slot>
+        <div part="wrapper" class="bp-input">
+          <input
+            part="input"
+            class=${classMap({
+              'bp-input__input': true,
+            })}
+            id="native"
+            type="${this.type}"
+            placeholder="${this.placeholder}"
+            value="${this.value}"
+            ?disabled="${this.disabled}"
+            ?required="${this.required}"
+            ?readonly="${this.readonly}"
+            ?autofocus="${this.autofocus}"
+            ?autocomplete="${this.autocomplete}"
+          />
+          <slot part="buttons-slot" name="buttons"></slot>
+        </div>
       </div>
     `;
   }
-
-  
-
 }

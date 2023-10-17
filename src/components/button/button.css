@@ -117,15 +117,25 @@
     justify-content: center;
   }
 
-  &.bp-button__has-icon-only {
+}
+
+:host(.bp-button__has-icon-only) {
+  /* aspect-ratio: 1; */
+
+  & button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     margin: 0;
-
+    /* aspect-ratio: 1; */
+  
     & slot[part="main"] {
       display: none;
+    }
+
+    & slot[name="icon-only"] {
+      padding: var(--icon-only-padding, 8px);
     }
   }
 }

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 
 import '../button/button';
 
@@ -11,10 +11,27 @@ const meta = {
     console.log(args);
     const togglePasswordVisibility = (e: Event) => {
     };
+    const passwordButtons = args.type === 'password' ? html`
+      <bp-button variant="clear" color="blue" aria-label="show password" @click=${togglePasswordVisibility}>
+        <sl-icon style="font-size: 1rem;" slot="icon-only" name=${args.showPassword ? 'eye-slash' : 'eye'}></sl-icon>
+      </bp-button>
+      <bp-divider></bp-divider>
+      <bp-button variant="clear" color="blue" aria-label="Scan Fingerprint">
+        <sl-icon slot="icon-only" name="fingerprint"></sl-icon>
+      </bp-button>
+    ` : nothing;
+    const emailButtons = args.type === 'email' ? html`
+      <bp-button variant="clear" color="blue" aria-label="Scan QR Code">
+        <sl-icon slot="icon-only" name="qr-code-scan"></sl-icon>
+      </bp-button>
+    ` : nothing;  
     return html`
       <style>
       bp-input::part(input) {
         width: 250px;
+      }
+      bp-button:last-child {
+        margin-inline-end: 0.2rem;
       }
       </style>
       <bp-input
@@ -28,13 +45,8 @@ const meta = {
         value="${args.value}"
       >
         <bp-buttons slot="buttons">
-          <bp-button variant="clear" color="blue" aria-label="show password" @click=${togglePasswordVisibility}>
-            <sl-icon style="font-size: 1rem;" slot="icon-only" name=${args.showPassword ? 'eye-slash' : 'eye'}></sl-icon>
-          </bp-button>
-          <bp-divider></bp-divider>
-          <bp-button variant="clear" color="blue" aria-label="Scan Fingerprint">
-            <sl-icon slot="icon-only" name="fingerprint"></sl-icon>
-          </bp-button>
+          ${passwordButtons}
+          ${emailButtons}
         </bp-buttons>
       </bp-input>
     `;
@@ -109,3 +121,15 @@ export const Password: Story = {
   },
 };
 
+export const Email: Story = {
+  args: {
+    type: 'email',
+    placeholder: 'Enter your email',
+    label: 'Email',
+    disabled: false,
+    required: false,
+    autofocus: true,
+    autocomplete: false,
+    value: '',
+  },
+};

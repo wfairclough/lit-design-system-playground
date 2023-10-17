@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { watch } from '../../internal/watch';
 import buttonStyles from './button.css?inline';
@@ -38,13 +38,29 @@ export class BpButton extends LitElement {
     }
   }
 
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    this.classList.remove('bp-button__has-icon-only');
+    this.classList.remove('bp-button__has-start');
+    this.classList.remove('bp-button__has-end');
+    if (this.hasSlotController.test('icon-only')) {
+      this.classList.add('bp-button__has-icon-only');
+    }
+    if (this.hasSlotController.test('start')) {
+      this.classList.add('bp-button__has-start');
+    }
+    if (this.hasSlotController.test('end')) {
+      this.classList.add('bp-button__has-end');
+    }
+  }
+
+  focus(options?: FocusOptions | undefined): void {
+    this.shadowRoot?.querySelector('button')?.focus(options);
+  }
+
   render() {
     return html`
     <button part="base" class=${classMap({
       [`bp-button bp-button__${this.variant}`]: true,
-      'bp-button__has-icon-only': this.hasSlotController.test('icon-only'),
-      'bp-button__has-start': this.hasSlotController.test('start'),
-      'bp-button__has-end': this.hasSlotController.test('end'),
     })}>
       <slot name="start"></slot>
       <slot name="icon-only"></slot>
