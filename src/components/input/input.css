@@ -1,0 +1,79 @@
+:host {
+  box-sizing: border-box;
+  --line-height: 2.2rem;
+  --background: hsl(0, 0%, 100%);
+  --seperator-color: hsl(0, 0%, 75%);
+  --outline-color: hsl(213, 44%, 49%);
+  --border-radius: 5px;
+  --color: hsl(0, 0%, 10%);
+  --placeholder-color: hsl(0, 0%, 30%);
+  font-size: 14px;
+  
+  & * {
+    box-sizing: border-box;
+  }
+  
+  & [part="wrapper"] {
+    display: inline-flex;
+    width: fit-content;
+    border: 3px solid transparent;
+    background: var(--background);
+    border-radius: var(--border-radius);
+    /* box-shadow: 30px 30px 5px 0 #999; */
+    &:focus-within {
+      outline: 3px solid var(--outline-color);
+    }
+  }
+  
+  & input {
+    flex-grow: 1;
+    line-height: var(--line-height);
+    padding: 0 10px;
+    border: none;
+    border-radius: 7px;
+    background-color: transparent;
+    outline: none;
+    color: var(--color);
+    caret-color: var(--color);
+
+    &::placeholder {
+      color: var(--placeholder-color);
+    }
+  }
+
+  &::slotted(bp-buttons) bp-button {
+  }
+  
+  /* & slot[name="buttons"]::slotted(bp-buttons) {
+      --buttons-slot: var(--found);
+      --background-color: transparent;
+    & slot {
+      --buttons-default-slot: var(--found);
+    }
+    & slot::slotted(bp-button) {
+      --background-color: transparent;
+    }
+  } */
+  & ::slotted(bp-buttons) {
+    --seperator-color: hsl(0, 0%, 25%);
+    --padding: 0;
+    --font-size: 1.7rem;
+  }
+}
+
+
+/* Prefers dark mode */
+@media (prefers-color-scheme: dark) {
+  :host {
+    --color: hsl(0, 0%, 100%);
+    --background: hsl(0, 0%, 14%);
+    --outline-color: hsl(213, 44%, 39%);
+    --seperator-color: hsl(0, 0%, 25%);
+    --placeholder-color: hsl(0, 0%, 70%);
+
+    & input {
+      caret-color: var(--color);
+    }
+  }
+}
+

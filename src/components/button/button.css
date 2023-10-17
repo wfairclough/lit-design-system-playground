@@ -7,6 +7,7 @@
   --background-color: var(--bp-color-base);
   --color: var(--bp-color-contrast);
   color: color-mix(in lch, purple 50%, plum 50%);
+  height: 100%;
 }
 
 :host(.bp-variant__solid) {
@@ -42,6 +43,32 @@
   --border-color: transparent;
 }
 
+:host(.seperator-before) {
+  --seperator-color: hsl(0, 0%, 25%);
+  &::before {
+    content: '';
+    display: inline-block;
+    display: block;
+    width: 1px;
+    height: calc(100% - 10px);
+    margin: 5px 2px;
+    background: var(--seperator-color);
+  }
+}
+
+:host(.seperator-after) {
+  --seperator-color: hsl(0, 0%, 25%);
+  &::after {
+    content: '';
+    display: inline-block;
+    display: block;
+    width: 1px;
+    height: calc(100% - 10px);
+    margin: 5px 2px;
+    background: var(--seperator-color);
+  }
+}
+
 :host button {
   display: inline-flex;
   align-items: center;
@@ -49,11 +76,12 @@
   gap: 0.3rem;
   cursor: pointer;
   border: 1px var(--border-type) var(--border-color);
-  padding: 0.5rem 1rem;
+  padding: var(--padding, 0.5rem 1rem);
   border-radius: 10px;
   background-color: var(--background-color);
   color: var(--color);
   font-weight: 400;
+  font-size: var(--font-size);
 
   &:active {
     background-color: var(--background-color-activated);
@@ -77,6 +105,28 @@
 
   & slot[name="start"]::slotted(*) {
 
+  }
+
+  & slot[name="end"]::slotted(*) {
+
+  }
+
+  & slot[name="icon-only"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.bp-button__has-icon-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    & slot[part="main"] {
+      display: none;
+    }
   }
 }
 

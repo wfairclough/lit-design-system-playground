@@ -3,9 +3,12 @@ import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace
 
 export * from './components/alert/alert';
 export * from './components/button/button';
+export * from './components/buttons/buttons';
 export * from './components/checkbox/checkbox';
 export * from './components/copy-button/copy-button';
 export * from './components/dropdown/dropdown';
+export * from './components/divider/divider';
+export * from './components/input/input';
 export * from './components/list/list';
 export * from './components/list/list-item';
 export * from './components/menu-button/menu-button';

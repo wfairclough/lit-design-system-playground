@@ -16,7 +16,7 @@
   /* Colors */
 	--bp-color-primary: #008282;
 	--bp-color-primary-rgb: 0, 130, 130;
-	--bp-color-primary-hsl: 180.00deg 100% 25%;
+	--bp-color-primary-hsl: 180deg 100% 25%;
 	--bp-color-primary-contrast: #ffffff;
 	--bp-color-primary-contrast-rgb: 255,255,255;
 	--bp-color-primary-shade: #004141;
@@ -24,7 +24,7 @@
 
 	--bp-color-primary-dark: #116363;
 	--bp-color-primary-dark-rgb: 17, 99, 99;
-	--bp-color-primary-dark-hsl: 180.00deg 71% 23%;
+	--bp-color-primary-dark-hsl: 180deg 71% 23%;
 	--bp-color-primary-dark-contrast: #ffffff;
 	--bp-color-primary-dark-contrast-rgb: 255,255,255;
 	--bp-color-primary-dark-shade: #093232;
@@ -32,11 +32,32 @@
 
 	--bp-color-primary-light: #F2F8F8;
 	--bp-color-primary-light-rgb: 242, 248, 248;
-	--bp-color-primary-light-hsl: 180.00deg 30% 96%;
+	--bp-color-primary-light-hsl: 180deg 30% 96%;
 	--bp-color-primary-light-contrast: #008282;
 	--bp-color-primary-light-contrast-rgb: 0,130,130;
 	--bp-color-primary-light-shade: #797c7c;
 	--bp-color-primary-light-tint: #f9fcfc;
+
+	--bp-color-blue: #007bff;
+	--bp-color-blue-rgb: 0, 123, 255;
+	--bp-color-blue-hsl: 211.06deg 100% 50%;
+	--bp-color-blue-contrast: #ffffff;
+	--bp-color-blue-contrast-rgb: 255,255,255;
+	--bp-color-blue-shade: #03e80;
+	--bp-color-blue-tint: #80bdff;
+
+
+	--bp-color-neutral-50: hsl(180deg, 25%, 0%);
+	--bp-color-neutral-100: hsl(180deg, 25%, 10%);
+	--bp-color-neutral-200: hsl(180deg, 25%, 20%);
+	--bp-color-neutral-300: hsl(180deg, 25%, 30%);
+	--bp-color-neutral-400: hsl(180deg, 25%, 40%);
+	--bp-color-neutral-500: hsl(180deg, 25%, 50%);
+	--bp-color-neutral-600: hsl(180deg, 25%, 60%);
+	--bp-color-neutral-700: hsl(180deg, 25%, 70%);
+	--bp-color-neutral-800: hsl(180deg, 25%, 80%);
+	--bp-color-neutral-900: hsl(180deg, 25%, 90%);
+	--bp-color-neutral-1000: hsl(180deg, 25%, 100%);
 }
 
 .bp-color-primary {
@@ -67,6 +88,16 @@
 	--bp-color-contrast-rgb: var(--bp-color-primary-light-contrast-rgb);
 	--bp-color-shade: var(--bp-color-primary-light-shade);
 	--bp-color-tint: var(--bp-color-primary-light-tint);
+}
+
+.bp-color-blue {
+	--bp-color-base: var(--bp-color-blue);
+	--bp-color-base-rgb: var(--bp-color-blue-rgb);
+	--bp-color-base-hsl: var(--bp-color-blue-hsl);
+	--bp-color-contrast: var(--bp-color-blue-contrast);
+	--bp-color-contrast-rgb: var(--bp-color-blue-contrast-rgb);
+	--bp-color-shade: var(--bp-color-blue-shade);
+	--bp-color-tint: var(--bp-color-blue-tint);
 }
 
 a {
